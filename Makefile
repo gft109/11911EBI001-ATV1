@@ -4,6 +4,7 @@ PROG = blinky
 CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 CP = arm-none-eabi-objcopy
+
 CFLAGS = -mcpu=cortex-m4 -mthumb
 LFLAGS = -nostdlib -T stm32f411-rom.ld
 
@@ -20,5 +21,5 @@ $(PROG).elf: $(OBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJS) $(PROG).elf 
+	rm -f $(OBJS)  $(PROG).bin $(PROG).elf 
 

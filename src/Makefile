@@ -5,8 +5,8 @@ CC = arm-none-eabi-gcc
 LD = arm-none-eabi-gcc
 CP = arm-none-eabi-objcopy
 
-CFLAGS = -mcpu=cortex-m4 -mthumb
-LFLAGS = -nostdlib -T stm32f411-rom.ld
+CFLAGS = -g -mcpu=cortex-m4 -mthumb -O0 -Wall
+LFLAGS = -nostdlib -T stm32f411-rom.ld -Wl,-Map=blinky.map
 
 OBJS = startup.o \
 	main.o
@@ -21,5 +21,5 @@ $(PROG).elf: $(OBJS)
 	$(CC) -c $(CFLAGS) $< -o $@
 
 clean:
-	rm -f $(OBJS)  $(PROG).bin $(PROG).elf 
+	rm -f $(OBJS) $(PROG).bin $(PROG).elf 
 

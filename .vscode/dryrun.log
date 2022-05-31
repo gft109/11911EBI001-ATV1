@@ -1,0 +1,6 @@
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/gustavo/semb1-workspace/lab-03'
+arm-none-eabi-gcc -nostdlib -T stm32f411-rom.ld startup.o main.o -o blinky.elf
+arm-none-eabi-objcopy blinky.elf -O binary blinky.bin
+make: Leaving directory '/home/gustavo/semb1-workspace/lab-03'
+ 

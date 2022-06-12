@@ -16,6 +16,7 @@ SECTIONS
     {
         KEEP(*(.isr_vectors))
         *(.text)
+        . = ALIGN(4);
         *(.rodata)
         . = ALIGN(4);
         _etext = .;

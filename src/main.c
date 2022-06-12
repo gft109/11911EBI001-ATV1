@@ -99,22 +99,32 @@ int main(int argc, char *argv[])
 
     /* Configura PC13 como saida pull-up off e pull-down off */
     reg = *pGPIOC_MODER;
-    reg &= ~(GPIO_MODER13_MASK);
-    reg |= (GPIO_MODER_OUTPUT << GPIO_MODER13_SHIFT);
-    *pGPIOC_MODER = reg;
+    reg &= ~GPIO_MODER_MASK(13);
+    reg |= (GPIO_MODER_OUTPUT << GPIO_MODER_SHIFT(13));
+    *pGPIOC_MODER = reg;  
 
     reg = *pGPIOC_OTYPER;
-    reg &= ~(GPIO_OT13_MASK);
-    reg |= (GPIO_OTYPER_PP << GPIO_OT13_SHIFT);
+    reg &= ~GPIO_OT_MASK(13);
+    reg |= (GPIO_OTYPER_PP << GPIO_OT_SHIFT(13));
     *pGPIOC_OTYPER = reg;
 
     reg = *pGPIOC_PUPDR;
-    reg &= ~(GPIO_PUPDR13_MASK);
-    reg |= (GPIO_PUPDR_NONE << GPIO_PUPDR13_SHIFT);
+    reg &= ~GPIO_PUPDR_MASK(13);
+    reg |= (GPIO_PUPDR_NONE << GPIO_PUPDR_SHIFT(13));
     *pGPIOC_PUPDR = reg;
+
+    /* Configura PA0 como saida pull-up on  */
 
     while(1)
     {
+        // recebe entrada PA0
+
+        // Botão apertado
+        if(GPIO_BSRR_SET(0) == 0)
+            LED_DELAY = 50000
+        // Botão não apertado
+        else
+            LED_DELAY = 10000
         // liga led
         *pGPIOC_BSRR = GPIO_BSRR_SET(13);
         delay(LED_DELAY);

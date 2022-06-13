@@ -118,20 +118,20 @@ int main(int argc, char *argv[])
     while(1)
     {
         // recebe entrada PA0
-
+        uint32_t led_time;
         // Botão apertado
-        if(GPIO_BSRR_SET(0) == 0)
-            LED_DELAY = 50000
+        if(GPIO_MODER_OUTPUT << GPIO_MODER_SHIFT(0) == 0)
+            led_time = 800;
         // Botão não apertado
         else
-            LED_DELAY = 10000
+            led_time = 300;
         // liga led
-        *pGPIOC_BSRR = GPIO_BSRR_SET(13);
-        delay(LED_DELAY);
+        *pGPIOC_BSRR = GPIO_BSRR_RST(13);
+        delay(led_time);
 
         // desliga led
         *pGPIOC_BSRR = GPIO_BSRR_SET(13);
-        delay(LED_DELAY);
+        delay(led_time);
  
     }
 

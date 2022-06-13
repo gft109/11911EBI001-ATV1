@@ -79,7 +79,7 @@ void delay(uint32_t time)
 }
 
 
-#define LED_DELAY  50000
+
 
 int main(int argc, char *argv[])
 {
@@ -117,14 +117,9 @@ int main(int argc, char *argv[])
 
     while(1)
     {
-        // recebe entrada PA0
-        uint32_t led_time;
-        // Botão apertado
-        if(GPIO_MODER_OUTPUT << GPIO_MODER_SHIFT(0) == 0)
-            led_time = 800;
-        // Botão não apertado
-        else
-            led_time = 300;
+        
+        uint32_t led_time = 5000;
+            
         // liga led
         *pGPIOC_BSRR = GPIO_BSRR_RST(13);
         delay(led_time);
